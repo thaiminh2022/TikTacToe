@@ -1,0 +1,304 @@
+[gd_scene load_steps=4 format=3 uid="uid://ccrv08gmx453j"]
+
+[ext_resource type="Theme" uid="uid://dgfgqs0ee8bca" path="res://themes/main_menu_theme.tres" id="1_vicpq"]
+[ext_resource type="Texture2D" uid="uid://bw17syigxgpg4" path="res://sprites/circle.svg" id="2_8hktp"]
+[ext_resource type="Script" path="res://scripts/UI/main_menu.gd" id="2_j7mlh"]
+
+[node name="MainMenu" type="Control" node_paths=PackedStringArray("start_btn", "credits_btn", "exit_btn", "choose_a_gamemode", "hide_gamemode_btn", "normal_mode_btn", "nani_mode_btn", "dimensional_mode_btn", "credits_scene", "hide_credits_btn")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_vicpq")
+script = ExtResource("2_j7mlh")
+start_btn = NodePath("MarginContainer/VBoxContainer/Start")
+credits_btn = NodePath("MarginContainer/VBoxContainer/Credits")
+exit_btn = NodePath("MarginContainer/VBoxContainer/Exit")
+choose_a_gamemode = NodePath("ChooseAGameMode")
+hide_gamemode_btn = NodePath("ChooseAGameMode/MarginContainer/ScrollContainer/VBoxContainer/BackBtn")
+normal_mode_btn = NodePath("ChooseAGameMode/MarginContainer/ScrollContainer/VBoxContainer/NormalMode")
+nani_mode_btn = NodePath("ChooseAGameMode/MarginContainer/ScrollContainer/VBoxContainer/NaniMode")
+dimensional_mode_btn = NodePath("ChooseAGameMode/MarginContainer/ScrollContainer/VBoxContainer/DimensionalMode")
+credits_scene = NodePath("Credits")
+hide_credits_btn = NodePath("Credits/Button")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.137255, 0.129412, 0.211765, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 100
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 100
+theme_override_constants/margin_bottom = 100
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer2"]
+layout_mode = 2
+size_flags_vertical = 0
+text = "TicTacToe"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="MarginContainer/VBoxContainer2"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 64
+text = "variations"
+horizontal_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 6
+theme_override_constants/separation = 50
+
+[node name="Start" type="Button" parent="MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 200)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.864675, 0.864675, 0.864675, 1)
+text = "Start"
+
+[node name="Credits" type="Button" parent="MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 200)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.864675, 0.864675, 0.864675, 1)
+text = "Credits"
+
+[node name="Exit" type="Button" parent="MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 200)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.864675, 0.864675, 0.864675, 1)
+text = "Exit"
+
+[node name="ChooseAGameMode" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="bg" type="ColorRect" parent="ChooseAGameMode"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.164706, 0.152941, 0.247059, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="ChooseAGameMode"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="ChooseAGameMode/MarginContainer"]
+layout_mode = 2
+mouse_filter = 2
+horizontal_scroll_mode = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ChooseAGameMode/MarginContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+mouse_filter = 2
+theme_override_constants/separation = 20
+
+[node name="BackBtn" type="Button" parent="ChooseAGameMode/MarginContainer/ScrollContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 250)
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="ChooseAGameMode/MarginContainer/ScrollContainer/VBoxContainer/BackBtn"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_right = 30
+
+[node name="OptionBtn" type="HBoxContainer" parent="ChooseAGameMode/MarginContainer/ScrollContainer/VBoxContainer/BackBtn/MarginContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="ChooseAGameMode/MarginContainer/ScrollContainer/VBoxContainer/BackBtn/MarginContainer/OptionBtn"]
+layout_mode = 2
+size_flags_horizontal = 2
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="GameIcon" type="TextureRect" parent="ChooseAGameMode/MarginContainer/ScrollContainer/VBoxContainer/BackBtn/MarginContainer/OptionBtn/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+texture = ExtResource("2_8hktp")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="Button" type="Label" parent="ChooseAGameMode/MarginContainer/ScrollContainer/VBoxContainer/BackBtn/MarginContainer/OptionBtn"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 96
+text = "Back"
+horizontal_alignment = 2
+
+[node name="NormalMode" type="Button" parent="ChooseAGameMode/MarginContainer/ScrollContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 250)
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="ChooseAGameMode/MarginContainer/ScrollContainer/VBoxContainer/NormalMode"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_right = 30
+
+[node name="OptionBtn" type="HBoxContainer" parent="ChooseAGameMode/MarginContainer/ScrollContainer/VBoxContainer/NormalMode/MarginContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="ChooseAGameMode/MarginContainer/ScrollContainer/VBoxContainer/NormalMode/MarginContainer/OptionBtn"]
+layout_mode = 2
+size_flags_horizontal = 2
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="GameIcon" type="TextureRect" parent="ChooseAGameMode/MarginContainer/ScrollContainer/VBoxContainer/NormalMode/MarginContainer/OptionBtn/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+texture = ExtResource("2_8hktp")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="Button" type="Label" parent="ChooseAGameMode/MarginContainer/ScrollContainer/VBoxContainer/NormalMode/MarginContainer/OptionBtn"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 96
+text = "Normal"
+horizontal_alignment = 2
+
+[node name="NaniMode" type="Button" parent="ChooseAGameMode/MarginContainer/ScrollContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 250)
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="ChooseAGameMode/MarginContainer/ScrollContainer/VBoxContainer/NaniMode"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_right = 30
+
+[node name="OptionBtn" type="HBoxContainer" parent="ChooseAGameMode/MarginContainer/ScrollContainer/VBoxContainer/NaniMode/MarginContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="ChooseAGameMode/MarginContainer/ScrollContainer/VBoxContainer/NaniMode/MarginContainer/OptionBtn"]
+layout_mode = 2
+size_flags_horizontal = 2
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="GameIcon" type="TextureRect" parent="ChooseAGameMode/MarginContainer/ScrollContainer/VBoxContainer/NaniMode/MarginContainer/OptionBtn/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+texture = ExtResource("2_8hktp")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="Button" type="Label" parent="ChooseAGameMode/MarginContainer/ScrollContainer/VBoxContainer/NaniMode/MarginContainer/OptionBtn"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 96
+text = "Nani!!!"
+horizontal_alignment = 2
+
+[node name="DimensionalMode" type="Button" parent="ChooseAGameMode/MarginContainer/ScrollContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 250)
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="ChooseAGameMode/MarginContainer/ScrollContainer/VBoxContainer/DimensionalMode"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_right = 30
+
+[node name="OptionBtn" type="HBoxContainer" parent="ChooseAGameMode/MarginContainer/ScrollContainer/VBoxContainer/DimensionalMode/MarginContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="ChooseAGameMode/MarginContainer/ScrollContainer/VBoxContainer/DimensionalMode/MarginContainer/OptionBtn"]
+layout_mode = 2
+size_flags_horizontal = 2
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="GameIcon" type="TextureRect" parent="ChooseAGameMode/MarginContainer/ScrollContainer/VBoxContainer/DimensionalMode/MarginContainer/OptionBtn/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+texture = ExtResource("2_8hktp")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="Button" type="Label" parent="ChooseAGameMode/MarginContainer/ScrollContainer/VBoxContainer/DimensionalMode/MarginContainer/OptionBtn"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 96
+text = "Dimensional"
+horizontal_alignment = 2
+
+[node name="Credits" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Button" type="Button" parent="Credits"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -107.0
+offset_top = -66.0
+offset_right = 107.0
+offset_bottom = 66.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Hide"

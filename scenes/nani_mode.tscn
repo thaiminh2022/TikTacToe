@@ -1,0 +1,262 @@
+[gd_scene load_steps=14 format=3 uid="uid://1g33l1gneoe5"]
+
+[ext_resource type="Theme" uid="uid://cekjb0lp8bk38" path="res://themes/general_theme.tres" id="1_216a6"]
+[ext_resource type="Script" path="res://scripts/UI/game_visual.gd" id="2_mmyrm"]
+[ext_resource type="Theme" uid="uid://dqkaliwiivmcr" path="res://themes/board_theme.tres" id="3_c8kxh"]
+[ext_resource type="PackedScene" uid="uid://dib1m3k8oqc14" path="res://nodes/grid_button.tscn" id="4_ima1n"]
+[ext_resource type="Script" path="res://scripts/managers/game_manager.gd" id="5_ijeju"]
+[ext_resource type="Script" path="res://scripts/audio_player.gd" id="6_brx6b"]
+[ext_resource type="Script" path="res://scripts/victory_scene.gd" id="6_vx35n"]
+[ext_resource type="AudioStream" uid="uid://d27v43nglwkoh" path="res://sounds/x_mark.wav" id="7_43l4w"]
+[ext_resource type="Script" path="res://scripts/UI/turn_display.gd" id="8_n3oyu"]
+[ext_resource type="AudioStream" uid="uid://cgvexhf5lcmwk" path="res://sounds/o_mark.wav" id="8_whdtq"]
+[ext_resource type="Texture2D" uid="uid://dc8t4oim6bo0c" path="res://sprites/x.svg" id="9_txd07"]
+[ext_resource type="Texture2D" uid="uid://bw17syigxgpg4" path="res://sprites/circle.svg" id="10_qboc6"]
+[ext_resource type="Script" path="res://scripts/tic_tac_toe_api.gd" id="11_luqvo"]
+
+[node name="NaniMode" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_216a6")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.137255, 0.129412, 0.211765, 1)
+
+[node name="MainGame" type="Control" parent="." node_paths=PackedStringArray("game_manager", "grid_buttons", "line", "exit_btn")]
+custom_minimum_size = Vector2(1080, 1080)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -540.0
+offset_top = -540.0
+offset_right = 540.0
+offset_bottom = 540.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_mmyrm")
+game_manager = NodePath("../Controls/GameManager")
+grid_buttons = [NodePath("MainGame/MarginContainer/VBoxContainer/HBoxContainer/GridButton"), NodePath("MainGame/MarginContainer/VBoxContainer/HBoxContainer/GridButton2"), NodePath("MainGame/MarginContainer/VBoxContainer/HBoxContainer/GridButton3"), NodePath("MainGame/MarginContainer/VBoxContainer/HBoxContainer2/GridButton4"), NodePath("MainGame/MarginContainer/VBoxContainer/HBoxContainer2/GridButton5"), NodePath("MainGame/MarginContainer/VBoxContainer/HBoxContainer2/GridButton6"), NodePath("MainGame/MarginContainer/VBoxContainer/HBoxContainer3/GridButton7"), NodePath("MainGame/MarginContainer/VBoxContainer/HBoxContainer3/GridButton8"), NodePath("MainGame/MarginContainer/VBoxContainer/HBoxContainer3/GridButton9")]
+line = NodePath("Line2D")
+exit_btn = NodePath("../ExitButton")
+
+[node name="MainGame" type="MarginContainer" parent="MainGame"]
+custom_minimum_size = Vector2(1080, 1080)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -540.0
+offset_top = -540.0
+offset_right = 540.0
+offset_bottom = 540.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("3_c8kxh")
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="bg" type="ColorRect" parent="MainGame/MainGame"]
+layout_mode = 2
+color = Color(0.878431, 0.870588, 0.956863, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="MainGame/MainGame"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MainGame/MainGame/MarginContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MainGame/MainGame/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="GridButton" parent="MainGame/MainGame/MarginContainer/VBoxContainer/HBoxContainer" instance=ExtResource("4_ima1n")]
+layout_mode = 2
+
+[node name="GridButton2" parent="MainGame/MainGame/MarginContainer/VBoxContainer/HBoxContainer" instance=ExtResource("4_ima1n")]
+layout_mode = 2
+coords = Vector2i(1, 0)
+
+[node name="GridButton3" parent="MainGame/MainGame/MarginContainer/VBoxContainer/HBoxContainer" instance=ExtResource("4_ima1n")]
+layout_mode = 2
+coords = Vector2i(2, 0)
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="MainGame/MainGame/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="GridButton4" parent="MainGame/MainGame/MarginContainer/VBoxContainer/HBoxContainer2" instance=ExtResource("4_ima1n")]
+layout_mode = 2
+coords = Vector2i(0, 1)
+
+[node name="GridButton5" parent="MainGame/MainGame/MarginContainer/VBoxContainer/HBoxContainer2" instance=ExtResource("4_ima1n")]
+layout_mode = 2
+coords = Vector2i(1, 1)
+
+[node name="GridButton6" parent="MainGame/MainGame/MarginContainer/VBoxContainer/HBoxContainer2" instance=ExtResource("4_ima1n")]
+layout_mode = 2
+coords = Vector2i(2, 1)
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="MainGame/MainGame/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="GridButton7" parent="MainGame/MainGame/MarginContainer/VBoxContainer/HBoxContainer3" instance=ExtResource("4_ima1n")]
+layout_mode = 2
+coords = Vector2i(0, 2)
+
+[node name="GridButton8" parent="MainGame/MainGame/MarginContainer/VBoxContainer/HBoxContainer3" instance=ExtResource("4_ima1n")]
+layout_mode = 2
+coords = Vector2i(1, 2)
+
+[node name="GridButton9" parent="MainGame/MainGame/MarginContainer/VBoxContainer/HBoxContainer3" instance=ExtResource("4_ima1n")]
+layout_mode = 2
+coords = Vector2i(2, 2)
+
+[node name="Line2D" type="Line2D" parent="MainGame"]
+closed = true
+width = 20.0
+
+[node name="TurnDisplay" type="MarginContainer" parent="." node_paths=PackedStringArray("game_manager", "x_texture", "o_texture")]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 200.0
+grow_horizontal = 2
+theme_override_constants/margin_top = 50
+script = ExtResource("8_n3oyu")
+game_manager = NodePath("../Controls/GameManager")
+x_texture = NodePath("Control/TextureRect")
+o_texture = NodePath("Control/TextureRect2")
+
+[node name="Control" type="HBoxContainer" parent="TurnDisplay"]
+custom_minimum_size = Vector2(0, 200)
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="TurnDisplay/Control"]
+modulate = Color(0.611765, 0.811765, 0.847059, 1)
+layout_mode = 2
+size_flags_horizontal = 3
+texture = ExtResource("9_txd07")
+expand_mode = 2
+stretch_mode = 5
+
+[node name="TextureRect2" type="TextureRect" parent="TurnDisplay/Control"]
+modulate = Color(0.921569, 0.435294, 0.572549, 0.498039)
+layout_mode = 2
+size_flags_horizontal = 3
+texture = ExtResource("10_qboc6")
+expand_mode = 2
+stretch_mode = 5
+
+[node name="Controls" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Controls" node_paths=PackedStringArray("game_manager")]
+script = ExtResource("6_brx6b")
+game_manager = NodePath("../GameManager")
+x_move_audio = ExtResource("7_43l4w")
+o_move_audio = ExtResource("8_whdtq")
+
+[node name="GameManager" type="Node" parent="Controls" node_paths=PackedStringArray("tic_tac_toe_api")]
+script = ExtResource("5_ijeju")
+tic_tac_toe_api = NodePath("../TicTacToeAPI")
+
+[node name="TicTacToeAPI" type="Node" parent="Controls"]
+script = ExtResource("11_luqvo")
+
+[node name="VictoryScene" type="Control" parent="." node_paths=PackedStringArray("delay_timer", "game_manager", "texture_rect", "restart_btn")]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("6_vx35n")
+delay_timer = NodePath("VictoryDelay")
+game_manager = NodePath("../Controls/GameManager")
+x_texture = ExtResource("9_txd07")
+x_color = Color(0.611765, 0.811765, 0.847059, 1)
+o_texture = ExtResource("10_qboc6")
+o_color = Color(0.921569, 0.435294, 0.572549, 1)
+texture_rect = NodePath("VBoxContainer/TextureRect")
+restart_btn = NodePath("VBoxContainer/Restart")
+
+[node name="Background" type="ColorRect" parent="VictoryScene"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.164706, 0.152941, 0.247059, 1)
+
+[node name="VictoryDelay" type="Timer" parent="VictoryScene"]
+one_shot = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VictoryScene"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = -200.0
+offset_right = 200.0
+offset_bottom = 200.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 50
+
+[node name="TextureRect" type="TextureRect" parent="VictoryScene/VBoxContainer"]
+custom_minimum_size = Vector2(500, 500)
+layout_mode = 2
+texture = ExtResource("9_txd07")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="VictoryScene/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 64
+text = "player won"
+horizontal_alignment = 1
+
+[node name="Restart" type="Button" parent="VictoryScene/VBoxContainer"]
+layout_mode = 2
+text = "Restart"
+
+[node name="ExitButton" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -88.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_vertical = 3
+text = "Exit"

@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://vodkn570l7da"]
+
+[ext_resource type="Script" path="res://scripts/tic_tac_toe_api.gd" id="1_dquuw"]
+
+[node name="TicTacToeApi" type="Node"]
+script = ExtResource("1_dquuw")

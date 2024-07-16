@@ -1,0 +1,124 @@
+[gd_scene load_steps=7 format=3 uid="uid://1g33l1gneoe5"]
+
+[ext_resource type="Theme" uid="uid://cekjb0lp8bk38" path="res://general_theme.tres" id="1_0oeo6"]
+[ext_resource type="Texture2D" uid="uid://dc8t4oim6bo0c" path="res://sprites/x.svg" id="2_dtul0"]
+[ext_resource type="Script" path="res://scripts/game_visual.gd" id="2_hjcae"]
+[ext_resource type="PackedScene" uid="uid://dib1m3k8oqc14" path="res://nodes/grid_button.tscn" id="2_hmgge"]
+[ext_resource type="Script" path="res://scripts/game_manager.gd" id="3_2tfl1"]
+[ext_resource type="Texture2D" uid="uid://bw17syigxgpg4" path="res://sprites/circle.svg" id="4_6p7lw"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_0oeo6")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.0980392, 0.0901961, 0.141176, 1)
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -31.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Exit"
+
+[node name="MainGame" type="Control" parent="." node_paths=PackedStringArray("game_manager", "grid_buttons")]
+custom_minimum_size = Vector2(1080, 1080)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -540.0
+offset_top = -540.0
+offset_right = 540.0
+offset_bottom = 540.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_hjcae")
+game_manager = NodePath("../GameManager")
+x_texture = ExtResource("2_dtul0")
+o_texture = ExtResource("4_6p7lw")
+grid_buttons = [NodePath("MainGame/MarginContainer/GridContainer/GridButton"), NodePath("MainGame/MarginContainer/GridContainer/GridButton2"), NodePath("MainGame/MarginContainer/GridContainer/GridButton3"), NodePath("MainGame/MarginContainer/GridContainer/GridButton4"), NodePath("MainGame/MarginContainer/GridContainer/GridButton5"), NodePath("MainGame/MarginContainer/GridContainer/GridButton6"), NodePath("MainGame/MarginContainer/GridContainer/GridButton7"), NodePath("MainGame/MarginContainer/GridContainer/GridButton8"), NodePath("MainGame/MarginContainer/GridContainer/GridButton9")]
+
+[node name="MainGame" type="MarginContainer" parent="MainGame"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="bg" type="ColorRect" parent="MainGame/MainGame"]
+layout_mode = 2
+color = Color(0.878431, 0.870588, 0.956863, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="MainGame/MainGame"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="GridContainer" type="GridContainer" parent="MainGame/MainGame/MarginContainer"]
+layout_mode = 2
+theme_override_constants/h_separation = 10
+theme_override_constants/v_separation = 10
+columns = 3
+
+[node name="GridButton" parent="MainGame/MainGame/MarginContainer/GridContainer" instance=ExtResource("2_hmgge")]
+layout_mode = 2
+
+[node name="GridButton2" parent="MainGame/MainGame/MarginContainer/GridContainer" instance=ExtResource("2_hmgge")]
+layout_mode = 2
+coords = Vector2i(1, 0)
+
+[node name="GridButton3" parent="MainGame/MainGame/MarginContainer/GridContainer" instance=ExtResource("2_hmgge")]
+layout_mode = 2
+coords = Vector2i(2, 0)
+
+[node name="GridButton4" parent="MainGame/MainGame/MarginContainer/GridContainer" instance=ExtResource("2_hmgge")]
+layout_mode = 2
+coords = Vector2i(0, 1)
+
+[node name="GridButton5" parent="MainGame/MainGame/MarginContainer/GridContainer" instance=ExtResource("2_hmgge")]
+layout_mode = 2
+coords = Vector2i(1, 1)
+
+[node name="GridButton6" parent="MainGame/MainGame/MarginContainer/GridContainer" instance=ExtResource("2_hmgge")]
+layout_mode = 2
+coords = Vector2i(2, 1)
+
+[node name="GridButton7" parent="MainGame/MainGame/MarginContainer/GridContainer" instance=ExtResource("2_hmgge")]
+layout_mode = 2
+coords = Vector2i(0, 2)
+
+[node name="GridButton8" parent="MainGame/MainGame/MarginContainer/GridContainer" instance=ExtResource("2_hmgge")]
+layout_mode = 2
+coords = Vector2i(1, 2)
+
+[node name="GridButton9" parent="MainGame/MainGame/MarginContainer/GridContainer" instance=ExtResource("2_hmgge")]
+layout_mode = 2
+coords = Vector2i(2, 2)
+
+[node name="GameManager" type="Node" parent="."]
+script = ExtResource("3_2tfl1")

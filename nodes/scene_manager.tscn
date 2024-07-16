@@ -1,0 +1,9 @@
+[gd_scene load_steps=4 format=3 uid="uid://bebkp385jbou"]
+
+[ext_resource type="Script" path="res://scripts/managers/scene_manager.gd" id="1_4rble"]
+[ext_resource type="PackedScene" uid="uid://1g33l1gneoe5" path="res://scenes/nani_mode.tscn" id="2_0xek6"]
+[ext_resource type="PackedScene" uid="uid://ccrv08gmx453j" path="res://scenes/main_menu.tscn" id="2_xmnk4"]
+
+[node name="SceneManager" type="Node"]
+script = ExtResource("1_4rble")
+scenes = Array[PackedScene]([ExtResource("2_xmnk4"), ExtResource("2_0xek6")])
