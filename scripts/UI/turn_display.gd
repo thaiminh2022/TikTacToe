@@ -15,7 +15,7 @@ func data_change(coords: Vector2i):
     if game_finished:
         return;
     
-    var data := game_manager.tic_tac_toe_api.get_game_data_at_coords(coords);
+    var data := game_manager.api.get_game_data_at_coords(coords);
     
     
     if data == TicTacToeAPI.PlayerTurn.X:
