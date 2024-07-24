@@ -4,8 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://dc8t4oim6bo0c" path="res://sprites/x.svg" id="2_63mw7"]
 [ext_resource type="Texture2D" uid="uid://bw17syigxgpg4" path="res://sprites/circle.svg" id="3_vum5v"]
 
-[node name="ConcludeScene" type="Control" node_paths=PackedStringArray("delay_timer", "texture_rect", "restart_btn")]
-visible = false
+[node name="ConcludeScene" type="Control" node_paths=PackedStringArray("delay_timer", "x_display", "o_display", "message_label", "restart_btn")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -14,11 +13,9 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_2j85b")
 delay_timer = NodePath("VictoryDelay")
-x_texture = ExtResource("2_63mw7")
-x_color = Color(0.611765, 0.811765, 0.847059, 1)
-o_texture = ExtResource("3_vum5v")
-o_color = Color(0.921569, 0.435294, 0.572549, 1)
-texture_rect = NodePath("VBoxContainer/TextureRect")
+x_display = NodePath("VBoxContainer/HBoxContainer/XDisplay")
+o_display = NodePath("VBoxContainer/HBoxContainer/ODisplay")
+message_label = NodePath("VBoxContainer/Label")
 restart_btn = NodePath("VBoxContainer/Restart")
 
 [node name="Background" type="ColorRect" parent="."]
@@ -48,10 +45,25 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 50
 
-[node name="TextureRect" type="TextureRect" parent="VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = -250
+
+[node name="XDisplay" type="TextureRect" parent="VBoxContainer/HBoxContainer"]
+modulate = Color(0.611765, 0.811765, 0.847059, 1)
 custom_minimum_size = Vector2(500, 500)
 layout_mode = 2
 texture = ExtResource("2_63mw7")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="ODisplay" type="TextureRect" parent="VBoxContainer/HBoxContainer"]
+modulate = Color(0.921569, 0.435294, 0.572549, 1)
+custom_minimum_size = Vector2(500, 500)
+layout_mode = 2
+texture = ExtResource("3_vum5v")
 expand_mode = 3
 stretch_mode = 5
 

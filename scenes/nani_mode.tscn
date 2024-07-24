@@ -33,7 +33,7 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.137255, 0.129412, 0.211765, 1)
 
-[node name="MainGame" type="Control" parent="." node_paths=PackedStringArray("game_manager", "line", "exit_btn")]
+[node name="MainGame" type="Control" parent="." node_paths=PackedStringArray("game_manager", "grid_btns_parent", "line", "exit_btn")]
 custom_minimum_size = Vector2(1080, 1080)
 layout_mode = 1
 anchors_preset = 8
@@ -49,10 +49,11 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("2_lvrgv")
 game_manager = NodePath("../Controls/NaniManager")
+grid_btns_parent = NodePath("MainGame/MarginContainer/GridContainer")
 line = NodePath("../Line2D")
 exit_btn = NodePath("../ExitButton")
 
-[node name="MainGame" type="MarginContainer" parent="MainGame" node_paths=PackedStringArray("game_manager", "grid_buttons")]
+[node name="MainGame" type="MarginContainer" parent="MainGame" node_paths=PackedStringArray("game_manager", "tictactoe_visual")]
 custom_minimum_size = Vector2(1080, 1080)
 layout_mode = 1
 anchors_preset = 8
@@ -73,7 +74,7 @@ theme_override_constants/margin_right = 20
 theme_override_constants/margin_bottom = 20
 script = ExtResource("4_68v3s")
 game_manager = NodePath("../../Controls/NaniManager")
-grid_buttons = [NodePath("MarginContainer/VBoxContainer/HBoxContainer/GridButton"), NodePath("MarginContainer/VBoxContainer/HBoxContainer/GridButton2"), NodePath("MarginContainer/VBoxContainer/HBoxContainer/GridButton3"), NodePath("MarginContainer/VBoxContainer/HBoxContainer2/GridButton4"), NodePath("MarginContainer/VBoxContainer/HBoxContainer2/GridButton5"), NodePath("MarginContainer/VBoxContainer/HBoxContainer2/GridButton6"), NodePath("MarginContainer/VBoxContainer/HBoxContainer3/GridButton7"), NodePath("MarginContainer/VBoxContainer/HBoxContainer3/GridButton8"), NodePath("MarginContainer/VBoxContainer/HBoxContainer3/GridButton9")]
+tictactoe_visual = NodePath("..")
 
 [node name="bg" type="ColorRect" parent="MainGame/MainGame"]
 layout_mode = 2
@@ -86,53 +87,42 @@ theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MainGame/MainGame/MarginContainer"]
+[node name="GridContainer" type="GridContainer" parent="MainGame/MainGame/MarginContainer"]
+layout_mode = 2
+columns = 3
+
+[node name="GridButton" parent="MainGame/MainGame/MarginContainer/GridContainer" instance=ExtResource("4_ima1n")]
 layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MainGame/MainGame/MarginContainer/VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-
-[node name="GridButton" parent="MainGame/MainGame/MarginContainer/VBoxContainer/HBoxContainer" instance=ExtResource("4_ima1n")]
-layout_mode = 2
-
-[node name="GridButton2" parent="MainGame/MainGame/MarginContainer/VBoxContainer/HBoxContainer" instance=ExtResource("4_ima1n")]
+[node name="GridButton2" parent="MainGame/MainGame/MarginContainer/GridContainer" instance=ExtResource("4_ima1n")]
 layout_mode = 2
 coords = Vector2i(1, 0)
 
-[node name="GridButton3" parent="MainGame/MainGame/MarginContainer/VBoxContainer/HBoxContainer" instance=ExtResource("4_ima1n")]
+[node name="GridButton3" parent="MainGame/MainGame/MarginContainer/GridContainer" instance=ExtResource("4_ima1n")]
 layout_mode = 2
 coords = Vector2i(2, 0)
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="MainGame/MainGame/MarginContainer/VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-
-[node name="GridButton4" parent="MainGame/MainGame/MarginContainer/VBoxContainer/HBoxContainer2" instance=ExtResource("4_ima1n")]
+[node name="GridButton4" parent="MainGame/MainGame/MarginContainer/GridContainer" instance=ExtResource("4_ima1n")]
 layout_mode = 2
 coords = Vector2i(0, 1)
 
-[node name="GridButton5" parent="MainGame/MainGame/MarginContainer/VBoxContainer/HBoxContainer2" instance=ExtResource("4_ima1n")]
+[node name="GridButton5" parent="MainGame/MainGame/MarginContainer/GridContainer" instance=ExtResource("4_ima1n")]
 layout_mode = 2
 coords = Vector2i(1, 1)
 
-[node name="GridButton6" parent="MainGame/MainGame/MarginContainer/VBoxContainer/HBoxContainer2" instance=ExtResource("4_ima1n")]
+[node name="GridButton6" parent="MainGame/MainGame/MarginContainer/GridContainer" instance=ExtResource("4_ima1n")]
 layout_mode = 2
 coords = Vector2i(2, 1)
 
-[node name="HBoxContainer3" type="HBoxContainer" parent="MainGame/MainGame/MarginContainer/VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-
-[node name="GridButton7" parent="MainGame/MainGame/MarginContainer/VBoxContainer/HBoxContainer3" instance=ExtResource("4_ima1n")]
+[node name="GridButton7" parent="MainGame/MainGame/MarginContainer/GridContainer" instance=ExtResource("4_ima1n")]
 layout_mode = 2
 coords = Vector2i(0, 2)
 
-[node name="GridButton8" parent="MainGame/MainGame/MarginContainer/VBoxContainer/HBoxContainer3" instance=ExtResource("4_ima1n")]
+[node name="GridButton8" parent="MainGame/MainGame/MarginContainer/GridContainer" instance=ExtResource("4_ima1n")]
 layout_mode = 2
 coords = Vector2i(1, 2)
 
-[node name="GridButton9" parent="MainGame/MainGame/MarginContainer/VBoxContainer/HBoxContainer3" instance=ExtResource("4_ima1n")]
+[node name="GridButton9" parent="MainGame/MainGame/MarginContainer/GridContainer" instance=ExtResource("4_ima1n")]
 layout_mode = 2
 coords = Vector2i(2, 2)
 
@@ -172,9 +162,9 @@ stretch_mode = 5
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Controls" node_paths=PackedStringArray("game_manager")]
 script = ExtResource("6_brx6b")
+game_manager = NodePath("../NaniManager")
 x_move_audio = ExtResource("7_43l4w")
 o_move_audio = ExtResource("8_whdtq")
-game_manager = NodePath("../NaniManager")
 
 [node name="NaniManager" type="Node" parent="Controls" node_paths=PackedStringArray("api")]
 script = ExtResource("11_cxiv0")
@@ -188,6 +178,7 @@ closed = true
 width = 20.0
 
 [node name="ConcludeScene" parent="." node_paths=PackedStringArray("game_manager") instance=ExtResource("14_yjf60")]
+visible = false
 layout_mode = 1
 game_manager = NodePath("../Controls/NaniManager")
 
